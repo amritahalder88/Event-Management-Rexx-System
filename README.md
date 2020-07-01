@@ -35,4 +35,3 @@ ADDITIONAL INFORMAION :
 ENVIRONMENT :
 - MYSQL version used: XAMPP for Windows 7.2.31 
 - PHP version used: PHP 7.2.31)
-
