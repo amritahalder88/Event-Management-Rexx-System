@@ -100,8 +100,9 @@
           </tr> 
         </thead>
         <tfoot>
-          <tr> 
-            <th colspan="6" id="total_fees"> </th>
+          <tr>
+            <th colspan="3" id="total_fees"> </th>
+            <th colspan="3"> </th>
           </tr> 
         </tfoot>
       </table>
@@ -187,7 +188,7 @@ $(document).ready(function() {
         }, 0 );
 
         // UPDATE FOOTER
-        $( api.column( 3 ).footer() ).html("TOTAL: "+
+        $( api.column( 3 ).footer() ).html("TOTAL FEES: "+
           Math.round(pageTotal * 100) / 100 // (round at most 2 decimal places, but only if necessary)
         );
       }
