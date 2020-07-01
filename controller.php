@@ -3,7 +3,7 @@
 	define('DB_SERVER','localhost');
 	define('DB_USER','root');
 	define('DB_PASS' ,'');
-	define('DB_NAME', 'jsondb');
+	define('DB_NAME', 'rexxevent_db');
 
 	//IF PARAMETERS PRESENT DURING CUSTOM SEARCH. SEND DATA TO FETCH DATA FUNCTION
 	if(isset($_REQUEST['employee_name'],$_REQUEST['event_id'],$_REQUEST['event_date'])) {
@@ -24,25 +24,26 @@
 		}
 
 
-
+		//FUNCTION FOR CONVERTING THE TIMEZONE FROM EUROPE/BERLIN TO UTC
 		function convertTime($event_date)
-		    {
-				$received = $event_date;
-				$tz = new DateTimeZone('UTC');
-				$date = new DateTime($received);
-				$date->setTimezone($tz);
-				$converted = $date->format('Y-m-d H:i:s');
-				return $converted;
-		    }
+		{
+			$received = $event_date;
+			$tz = new DateTimeZone('UTC');
+			$date = new DateTime($received);
+			$date->setTimezone($tz);
+			$converted = $date->format('Y-m-d H:i:s');
+			return $converted;
+		}
 
+		//FUNCTION FOR VERSION COMPARE. WE PRESUME STANDARD TIMEZONE TO BE UTC.
 		function versioncomparison($version, $event_date)
 		{
-		    if (version_compare($version, '1.0.17+60', '<')) {
-		                        return $this->convertTime($event_date); 
-		                    }
-		                    else{
-		                        return $event_date;
-		                    }
+			if (version_compare($version, '1.0.17+60', '<')) {
+				return $this->convertTime($event_date); 
+			}
+			else {
+				return $event_date;
+			}
 		}
 
 
@@ -76,8 +77,7 @@
 			$data = array();
 			while($row=mysqli_fetch_array($result)) {
 				//print_r ($row);
-				//$test = $this->versioncomparison($row['version'],$row['event_date']);
-				//echo $test;
+				$test = $this->versioncomparison($row['version'],$row['event_date']);
 				$sub_array = array();
 				$sub_array['employee_name'] = $row['employee_name'];
 				$sub_array['employee_mail'] = $row['employee_mail'];

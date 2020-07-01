@@ -3,13 +3,13 @@
 //CONNECT & SELECT DB
 $connect = mysqli_connect("localhost","root","") 
 or die('Database Not Connected. Please Fix the Issue! ' . mysqli_error()); 
-mysqli_select_db($connect,"jsondb");
+mysqli_select_db($connect,"rexxevent_db");
 
 
 //CHECK IF TABLE EXIST. IF DOES NOT EXIST THEN CREATE
-if(mysqli_num_rows(mysqli_query($connect, "SELECT * FROM information_schema.tables WHERE table_schema = 'jsondb' AND table_name = 'records'") ) == null) 
+if(mysqli_num_rows(mysqli_query($connect, "SELECT * FROM information_schema.tables WHERE table_schema = 'rexxevent_db' AND table_name = 'records'") ) == null) 
 {
-	//CREATE TABLE INSIDE JSONDB
+	//CREATE TABLE INSIDE REXXEVENT_DB
 	$create_query = "CREATE TABLE `records` (
 		`participation_id` int(10) NOT NULL,
 		`employee_name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,

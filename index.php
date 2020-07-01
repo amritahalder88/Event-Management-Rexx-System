@@ -35,8 +35,7 @@
     .table { width:100% !important; } 
     .table-striped { width:100% !important; } 
     .table-bordered { width:100% !important; } 
-    .dataTable { width:100% !important; } 
-
+    .dataTable { width:100% !important; }
     .dataTables_length { width:50% !important; }
     .search_container { width 100%; padding 20px; }
     #div_error { color:#b51f09; font-size: 14px; display:none; padding-top:10px; }
@@ -50,7 +49,7 @@
       <br />
       <br />
       <div class="row">
-        <div class="col-md-2">
+        <div class="col-md-2" style="margin-left:15px;">
           <input type="text" name="employee_name" id="employee_name" class="form-control" placeholder="Employee Name"  />
         </div>
         <div class="col-md-2">
@@ -74,25 +73,23 @@
         <div class="col-md-2">
           <div class="bootstrap-iso">
             <form action="" class="form-horizontal" method="post">
-              <input class="form-control" name="event_date" id="event_date" placeholder="YYYY-MM-DD" type="text"/>
+              <input class="form-control" name="event_date" id="event_date" placeholder="Event Date(YYYY-MM-DD)" type="text"/>
             </form>
           </div>
         </div>
-        </div>
-   
-        <div class="col-md-4">
-          <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
-          <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
-        </div>
-        <div class="col-md-8" id="div_error">
-        </div>
       </div>
+   
+      <div class="col-md-4">
+        <button type="button" name="filter" id="filter" class="btn btn-primary">Filter</button>
+        <button type="button" name="refresh" id="refresh" class="btn btn-default">Refresh</button>
+      </div>
+      <div class="col-md-8" id="div_error"></div>
     </div>
     <br />
 
     <div class="table_container">
       <table id="display_record" class="table table-striped table-bordered"> 
-        <thead>
+        <thead style="background-color: #8A8F93; color: #FFF;">
           <tr>
             <th>EMPLOYEE NAME</th>
             <th>EMPLOYEE EMAIL</th>
@@ -103,8 +100,8 @@
           </tr> 
         </thead>
         <tfoot>
-          <tr>
-            <th colspan="6" id="total_fees"> TOTAL: </th>
+          <tr> 
+            <th colspan="6" id="total_fees"> </th>
           </tr> 
         </tfoot>
       </table>
@@ -142,7 +139,7 @@ $(document).ready(function() {
     autoclose: true,
   })
 
-  //FETCHING DATA FOR RATATABLE
+  //FETCHING DATA FOR DATATABLE
   function search_data(employee_name, event_id, event_date) 
   {
     $('#display_record').DataTable({
@@ -190,7 +187,7 @@ $(document).ready(function() {
         }, 0 );
 
         // UPDATE FOOTER
-        $( api.column( 3 ).footer() ).html(
+        $( api.column( 3 ).footer() ).html("TOTAL: "+
           Math.round(pageTotal * 100) / 100 // (round at most 2 decimal places, but only if necessary)
         );
       }
@@ -219,7 +216,7 @@ $(document).ready(function() {
   $('#refresh').click(function(){
     $('#display_record').DataTable().destroy();
     $('#employee_name').val('');
-    $('#event_id').val('');
+    $('#event_id').val(0);
     $('#event_date').val('');
     $("#div_error").hide();
     search_data(employee_name='', event_id=0, event_date='');
