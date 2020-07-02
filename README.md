@@ -11,7 +11,7 @@ ACTIONS REQUIRED :
 ACTIONS TAKEN : 
 - Database named "rexxevent_db" created in Xampp.
 	NOTE: 
-	-please create a database named "rexxevent_db" in MYSQL and then run the project.
+	-please create a database named "rexxevent_db" in MYSQL and then place the extracted folder inside xampp-htdocs. Then run the project.
 
 - JSON file is decoded, read and the data are inserted in table "records".
 	NOTE: 
